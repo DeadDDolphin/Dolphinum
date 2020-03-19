@@ -1,2 +1,100 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+fact(0,1):-!.
+fact(N,X):-N1 is N-1,fact(N1,X1),X is X1*N.
+
+fact1(N,X):-fact2(0,1,N,X).
+fact2(N,K,N,K):-!.
+fact2(I,K,N,X):-I1 is I+1,K1 is K*I1,fact2(I1,K1,N,X).
+
+fibo(1,1):-!.
+fibo(2,1):-!.
+fibo(N,X):-N1 is N-1,fibo(N1,X1),N2 is N-2,fibo(N2,X2),X is X1+X2.
+
+fibo1(N,X):-fibo2(1,1,2,N,X).
+fibo2(_,K,N,N,K):-!.
+fibo2(J,K,I,N,X):-I1 is I+1, K1 is J+K, fibo2(K,K1,I1,N,X).
+
+max(X,Y,X):-X>Y,!.
+max(_,Y,Y).
+max3(X,Y,U,Z):-max(Y,U,K),max(X,K,Z).
+
+pr(2):-!.
+pr(X):-pr1(2,X).
+pr1(X,X):-!.
+pr1(I,X):-Y is X mod I,not(Y=0),I1 is I+1,pr1(I1,X).
+
+npr_d(N,X):-npd(N,N,X).
+npd(I,N,X):-Y is N mod I,Y=0,pr(I).
+npd(I,N,X):-I1 is I-1,ndp(I1,N,X).
+
+pr3_0:-read(N),write(N).
+pr3_1:-read(N),r_list(A,N),w_list(A).
+r_list(A,N):-r_list(A,N,0,[]).
+r_list(A,N,N,A):-!.
+r_list(A,N,I,B):-I1 is I+1, read(X), append(B,[X],B1),r_list(A,N,I1,B1).
+w_list([]):-!.
+w_list([H|T]):-write(H),nl,w_list(T).
+
+sum_list:-read(N),r_list(A,N),sum_l(A,Z),write(Z).
+sum_l(A,Z):-s_l(A, Z, 0).
+s_l([], Z, Z):-!.
+s_l([H|T], Z, S):-S1 is S+H, s_l(T, Z, S1).
+
+zacep:-read(N), r_list(A,N),read(I), zc(A,I,Z), write(Z).
+zc(A,I,Z):-zc(A, I, 1, Z).
+zc([H|_], I, I, H):-!.
+zc([_|T], I, K, Z):- K1 is K+1, zc(T, I, K1, Z).
+
+min:-read(N), r_list(A,N), min(A,M), write(M).
+min([H|T], M):-min(T, M, H).
+min([], M, M):-!.
+min([H|T], M, MI):-H < MI, !, min(T, M, H).
+min([_|T], M, MI):-min(T,M, MI).
+
+find:-read(N),r_list(A,N),write("input elem"),nl,read(X),find(A,X).
+find([X|_],X):-!.
+find([_|T],X):-find(T,X).
+
+getnum:-read(N),r_list(A,N),write("input elem"),nl,read(X),getnum(A,X).
+getnum(A,X):-getnum(A,X,1).
+getnum([X|_],X,I):-write(I),!.
+getnum([_|T],X,I):-I1 is I+1,getnum(T,X,I1).
+
+mirror:-read(N),r_list(A,N),nl,mirror(A,B),write(B).
+mirror([],_):-!.
+mirror([H|T],T):-mirror([],T,H).
+mirror(T,T,H):-mirror(_,H).
+
+pr(2):-!.
+pr(X):-pr1(2,X).
+pr1(X,X):-!.
+pr1(I,X):-Y is X mod I,not(Y=0),I1 is I+1,pr1(I1,X).
+
+p3_2(A,N):-p3_2(A,2,0,N).
+p3_2(A,A,N,N):-!.
+p3_2(A,I,K,N):-mult(I,PPD),I=PPD,!,K1 is K+1,I1 is I+1,p3_2(A,I1,K1,N).
+p3_2(A,I,K,N):-I1 is I+1,p3_2(A,I1,K,N).
+
+mult(I,PPD):-mult(I,2,1,PPD).
+mult(I,K,PPD,PPD):-I1 is I+1,I1=K,!.
+mult(I,K,P,PPD):- Y is I mod K, Y=0,pr(K),P1 is P*K, K1 is K+1,mult(I,K1,P1,PPD),!.
+mult(I,K,P,PPD):-K1 is K+1,mult(I,K1,P,PPD).
+
+nod(A,0,A):-!
+nod(_,0,_):-!,fail.
+nod(A,B,C):-R is A mod B, nod(B,R,C).
+
+euler(A,N):-ehehe(A,2,1,N).
+ehehe(A,A,N,N):-!.
+ehehe(A,I,K,N):-nod(A,I,1),!,I1 is I+1, K1 is K+1,ehehe(A,I1,K1,N).
+ehehe(A,I,K,N):-I1 is I+1,ehehe(A,I1,K,N).
+
+% Построить предикат который для заданного списка А ищет сумму элементов
+% меньше 10
+
+sum10(A,N):-sum10(A,0,N).
+sum10([],N,N):-!.
+sum10([H|T],K,N):-H<10,!,K1 is H+K,sum10(T,K1,N).
+sum10([_|T],K,N_:sum10(T,K,N).
+
