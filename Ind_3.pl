@@ -45,6 +45,7 @@ deleteAll([],_,NewList,NewList):-!.
 deleteAll([El|T],El,NewList,L):-deleteAll(T,El,NewList,L),!.
 deleteAll([H|T],El,NewList,L):-append(L,[H],L1),deleteAll(T,El,NewList,L1).
 
+
 numbersOfEl(List,El,Numbers):-numbersOfEl(List,El,1,Numbers,[]).
 numbersOfEl([],_,_,Numbers,Numbers):-!.
 numbersOfEl([El|T],El,I,Numbers,N):-append(N,[I],N1),I1 is I+1,numbersOfEl(T,El,I1,Numbers,N1),!.
@@ -53,6 +54,7 @@ numbersOfEl([H|T],El,I,Numbers,N):-I1 is I+1,numbersOfEl(T,El,I1,Numbers,N),!.
 numbersOfList(List,Cons,Numbers):-numbersOfList(List,Cons,Numbers,[]).
 numbersOfList([],_,Numbers,Numbers):-!.
 numbersOfList([H|T],Cons,Numbers,N):-numbersOfEl(Cons,H,A),deleteAll(T,H,NewList),append(N,A,N1),numbersOfList(NewList,Cons,Numbers,N1),!.
+
 
 deleteEl(List,El,NewList):-deleteEl(List,El,NewList,[]).
 deleteEl([El|T],El,NewList,L):-append(L,T,NewList),!.
@@ -71,3 +73,8 @@ sortStr(List,[Num|Tail],Strings,A):-el_no(List,Num,CurrentStr),append(A,[Current
 zadacha:-see('C:/Users/Dima/Documents/GitHub/Dolphinum/Ind3File.txt'),read_list_str(List,List_len),seen,
 		consonantsList(List,Cons),selection_sort(Cons, SortCons),numbersOfList(SortCons,Cons,Numbers), sortStr(List, Numbers, Strings),
 		tell('C:/Users/Dima/Documents/GitHub/Dolphinum/Ind3Result.txt'),write_list_str(Strings),told.
+		
+		
+		
+		
+		
