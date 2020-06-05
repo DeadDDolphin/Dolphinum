@@ -2,7 +2,7 @@
 
 let rec sumDeg f x s =
     if x<1 then s
-    else (sumDeg f (x/10) (s+(f x%10)))
+    else (sumDeg f (x/10) (s+(f (x%10))))
  
 let summa f g =
     let rec sumChisel f g x s =
