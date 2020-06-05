@@ -17,15 +17,9 @@ myForm.Controls.Add(myCreatingList)
 let myButton = new Button(Width= 140, Height = 60,Text = "Он сказал поехали, \nон взмахнул рукой!")
 myButton.Location <- new Point( 450, 350)
 myForm.Controls.Add(myButton)
-
-let x = 0
-let iter x = x+1
-let putNum = myCreatingList.AppendText(System.Convert.ToString(iter x))
-let putText = myCreatingList.AppendText(". "+placeToInput.Text+"\n")
     
 
-let _ = myButton.Click.Add(fun evArgs -> putNum)
-let _ = myButton.Click.Add(fun evArgs ->putText)
+let _ = myButton.Click.Add(fun evArgs ->myCreatingList.AppendText("♥"+placeToInput.Text+"\n"))
 // Запускаем форму
 do Application.Run(myForm)
 
