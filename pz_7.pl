@@ -40,9 +40,6 @@ sub_set_k([H|Sub_set],[H|Set],K):- K1 is K-1,sub_set_k(Sub_set,Set,K1).
 sub_set_k(Sub_set,[H|Set],K):-sub_set_k(Sub_set,Set,K).
 sochet:-read_str(A,N),read(K),sub_set_k(B,A,K),write_str(B),nl,fail.
 
-append1([],X,X):-!.
-append1([H|T],X,[H |Z]):-append1(T,X,Z).
-
 append_K(X,0,A,A):-!.
 append_K(X,K,A,A1):-K1 is K-1,append_K(X,K1,A,[X|A1]).
 

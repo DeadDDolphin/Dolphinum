@@ -72,9 +72,6 @@ parosoch([V1|T],E,Par,Cur):-adjacent(V1,T,E,Sm),findMinDegree(Sm,E,Imin),el_no(S
 							parosoch(SurviveVertexeses,E,Par,Cur1),!.
 parosoch([V1|T],E,Par,Cur):-parosoch(T,E,Par,Cur),!.
 
-get_cover([V|T],Edges,Vertexes,EdgeCover,CurCover):-neighbors(V,Vertexes,Edges,Neigh,[]),
-				all_degrees(Neigh,Edges,Degrees,[]),min_in_list(Degrees,Ind),el_no(Neigh,Ind,V1),append(CurCover,[[V,V1]],NewCover),
-				delete_el(T,V1,UsingVertexes,[]),get_cover(UsingVertexes,Edges,Vertexes,EdgeCover,NewCover).
 				
 				
 				
