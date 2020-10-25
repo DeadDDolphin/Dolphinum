@@ -1,0 +1,11 @@
+from pymorphy2 import MorphAnalyzer 
+morph = MorphAnalyzer() 
+tmp=morph.parse('голодающий')
+print(tmp)
+print(tmp.normal_phorm)
+print(tmp.normalized)
+print(tmp.tag)
+print('VERB' in tmp.tag) 
+print('NOUN' in tmp.tag) 
+print({'plut', 'past'} in tmp.tag) 
+print({'NOUN', 'plur'} in tmp.tag) 
